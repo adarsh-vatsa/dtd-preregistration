@@ -1,0 +1,16 @@
+{
+ "price_per_min": {
+  "mac": 0.062,
+  "osx": 0.062,
+  "windows": 0.01,
+  "win": 0.01,
+  "android": 0.01,
+  "linux": 0.006
+ },
+ "escalate": 16.11,
+ "miss": 128.88,
+ "false_backout": 64.44,
+ "base_reg": 0.35439961108410306,
+ "pass_int": 0.6837944664031621,
+ "pass_reg": 0.11842105263157894
+}

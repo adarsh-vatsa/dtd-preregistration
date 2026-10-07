@@ -1,0 +1,101 @@
+{
+ "written_utc": "2026-10-07T09:18:41.021171+00:00",
+ "freeze_after_last_history_utc": "2026-10-05T22:46:03+00:00",
+ "window": {
+  "start": "the freeze (written_utc)",
+  "week2_start_utc": "2026-10-14T00:00:00Z",
+  "end_utc": "2026-10-21T00:00:00Z",
+  "repo": "autoland",
+  "jobs": "tier-1 failed jobs (testfailed/busted) with a staff label in {fixed by commit, intermittent, infra, autoclassified intermittent, intermittent needs bugid} by 2026-10-23",
+  "sample": "every such job whose id ends in 0 or 1 (deterministic 20% sample), capped at 3,000 per week"
+ },
+ "price_change": "announced at the freeze: from 2026-10-14 00:00 UTC, macOS runner minutes cost 5x and Windows 2x the published price; Linux and all other costs unchanged",
+ "policies": {
+  "dp": "C.pol_dp with the frozen model; re-solved for week-2 prices with no new data",
+  "best_rule": {
+   "week1_published": "k2:star/backout/escalate",
+   "week2_mac5_win2": "k1:star/escalate/star"
+  },
+  "llm_controllers": "Qwen3.8-27B (vLLM, no thinking) and Opus 5.5 (claude -p), prompts in ci_llm.py (control, informed); informed facts = ci_facts.json with week-2 prices for week-2 failures; run after the window with the frozen prompts"
+ },
+ "scoring": "ci_triage.simulate with the frozen model: real same-push retrigger outcomes when observed, otherwise frozen odds; costs at the regime's prices; push-clustered bootstrap",
+ "predictions": {
+  "P1": "DP cost per failure in each week falls inside its forecast interval",
+  "P2": "DP minus best rule < 0 in each week (95% interval below zero)",
+  "P3": "DP minus each LLM controller < 0 in each week",
+  "P4": "after the price change the DP's macOS retrigger share falls and its forecast still holds"
+ },
+ "forecasts": {
+  "week1_published": {
+   "prices_per_min": {
+    "linux": 0.006,
+    "windows": 0.01,
+    "mac": 0.062,
+    "android": 0.01,
+    "other": 0.006
+   },
+   "best_rule": "k2:star/backout/escalate",
+   "dp": [
+    8.147,
+    [
+     6.984,
+     9.542
+    ]
+   ],
+   "best_rule_cost": [
+    13.184,
+    [
+     11.976,
+     14.513
+    ]
+   ],
+   "dp_minus_rule": [
+    -5.037,
+    [
+     -6.511,
+     -3.439
+    ]
+   ],
+   "forecast_basis": "1176 failures in the 30 days before the freeze"
+  },
+  "week2_mac5_win2": {
+   "prices_per_min": {
+    "linux": 0.006,
+    "windows": 0.02,
+    "mac": 0.31,
+    "android": 0.01,
+    "other": 0.006
+   },
+   "best_rule": "k1:star/escalate/star",
+   "dp": [
+    9.04,
+    [
+     7.765,
+     10.451
+    ]
+   ],
+   "best_rule_cost": [
+    15.31,
+    [
+     13.852,
+     16.822
+    ]
+   ],
+   "dp_minus_rule": [
+    -6.27,
+    [
+     -7.948,
+     -4.661
+    ]
+   ],
+   "forecast_basis": "1176 failures in the 30 days before the freeze"
+  }
+ },
+ "n_history": 5000,
+ "sha256": {
+  "ci_model_frozen.json": "c7fd7a96f1c7d7f7847410ff8faa1922673e3a425a305787c128102c3673a1b9",
+  "ci_triage.py": "b9576d1b2552a4a407ec39dccc2352e7df5a52d624df60bd614f2b23412b592f",
+  "ci_llm.py": "a7f86bb7b65d92b64a2ce6342cfda3d8ae338c914ddc0e6bc891cc54328fdfcd",
+  "ci_prospective.py": "b95d75fe28289eb4e8621099e0772daa28f33c12026f1b5d11a3a2b8e5b1389a"
+ }
+}
