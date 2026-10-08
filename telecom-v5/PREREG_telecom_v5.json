@@ -1,0 +1,37 @@
+{
+ "written_utc": "2026-10-08T13:22:47.333410+00:00",
+ "frozen_files_sha256": "0a93840ed335a81b52a3e387ad212a6d74a213e473a260afe0230f216958d52d  telecom_tracker.py\n7f218cd2ed4e8bbfbfe82f2f0cd4933e3ac2fada14eac7a6314a8263661ef655  telecom_v5.py\ne0474a59eb6458cc06b86061a19b472bfe114e9dde67e73ee1b592b495fecb79  dtd_telecom_agent.py\n5c1a91bc9e786572f44be776b93e97ef257e37d89d1bb598ebdda11d3061e480  dtd_run.py\n8f6e5032e6719148f6c3450726f9b6469e3a1129e296ecc552919c767ccc9936  order_dp.json\n89cb3186278e69dba6b654454fc3463838882d31041aecd32abb45495368b80b  telecom_splits.json\n2026-10-08T13:22:47Z\n",
+ "beacon": {
+  "uri": "https://beacon.nist.gov/beacon/2.0/chain/2/pulse/1975636",
+  "timeStamp": "2026-10-08T13:22:00.000Z",
+  "outputValue": "0316618324ED1782D9697B9171621D8C27017E17340EDFB82945C8FF8B04A5BC4299E5E4736C1FB0E222A8F3F62235C073D1BC47F45C688DFD31EC084418705B"
+ },
+ "sets": {
+  "reserve (in distribution)": {
+   "n": 114,
+   "rule": "all 34 remaining reserve mobile-data tasks + MMS sampled with random.Random(int(outputValue[:16],16))"
+  },
+  "holdout (out of distribution: fault break_app_storage_permission never in fitting data)": {
+   "n": 60,
+   "rule": "same RNG, after the reserve draw"
+  }
+ },
+ "arms": [
+  "Opus 5.5 alone (tau2 llm_agent via claude -p shim; reserve set only, if the shim is reachable)",
+  "Opus 5.5 + DtD v5 (mdp; reserve only)",
+  "Qwen free (tau2 llm_agent behaviour inside dtd_agent, mode free)",
+  "Qwen + DtD v5, decide = mdp (static DP order)",
+  "Qwen + DtD v5, decide = belief (QMDP over the fault posterior)",
+  "Qwen + DtD v5, decide = pomdp (belief + 2-step lookahead)"
+ ],
+ "customer": "Qwen3.8-27B, temperature 0, as in every earlier telecom run",
+ "trials": 1,
+ "primary": "success of Qwen + DtD v5 (mdp) vs Qwen free on the reserve set (paired by task; McNemar; task-clustered bootstrap)",
+ "secondary": [
+  "each v5 decide step vs free",
+  "v5 vs the earlier Opus-alone rate on reserve tasks (111/114 on the first reserve draw; reference only)",
+  "agent LLM calls and billed tokens per episode",
+  "holdout success (OOD)"
+ ],
+ "target_stated_in_advance": "reach Opus alone's level (about 97% on telecom in this harness) with Qwen + v5; if not reached, report the gap plainly"
+}

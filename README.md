@@ -64,3 +64,11 @@ and push signals, and a recalibrated belief) was developed on the train window o
 window. It wins there with simulated outcomes but loses to "retrigger once, then escalate" on the 169 failures whose
 outcomes were all observed. The prospective window, crawled only after this commit, decides. See
 `ci-prospective-amend1/PREREG_ci_prospective_amend1.json` for arms, scoring modes, predictions, forecasts and file hashes.
+
+## Telecom v5 (2026-10-08): blind evaluation of the full executor
+
+`telecom-v5/` freezes the tau2-telecom controller v5c (the table/belief picks every move; the controller executes lookups, blocker
+transfer, bill payment, refuel, roaming and every phone step; Qwen writes only uncovered turns). Files were hashed at
+2026-10-08T13:22:47Z; the evaluation sets were then drawn with the NIST beacon pulse 1975636 (114 fresh reserve tasks, 60 holdout
+tasks whose fault never appears in fitting data). Arms, primary comparison and the stated target are in
+`telecom-v5/PREREG_telecom_v5.json`. Committed before any evaluation episode finished.
