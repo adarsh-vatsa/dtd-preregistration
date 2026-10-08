@@ -1,0 +1,38 @@
+{
+ "service": [
+  "line",
+  "apn_reset",
+  "reboot",
+  "sim",
+  "airplane"
+ ],
+ "data": [
+  "airplane",
+  "roaming",
+  "data_saver",
+  "usage",
+  "mobile_data",
+  "netpref",
+  "vpn",
+  "sim",
+  "apn_reset",
+  "reboot",
+  "line"
+ ],
+ "mms": [
+  "airplane",
+  "sim",
+  "roaming",
+  "usage",
+  "mobile_data",
+  "netpref",
+  "wifi_calling",
+  "apn_mms",
+  "app_perm",
+  "apn_reset",
+  "reboot",
+  "line",
+  "data_saver",
+  "vpn"
+ ]
+}

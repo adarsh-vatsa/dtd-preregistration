@@ -72,3 +72,11 @@ transfer, bill payment, refuel, roaming and every phone step; Qwen writes only u
 2026-10-08T13:22:47Z; the evaluation sets were then drawn with the NIST beacon pulse 1975636 (114 fresh reserve tasks, 60 holdout
 tasks whose fault never appears in fitting data). Arms, primary comparison and the stated target are in
 `telecom-v5/PREREG_telecom_v5.json`. Committed before any evaluation episode finished.
+
+## Telecom v5e (2026-10-08): second blind evaluation
+
+v5c's blind reserve run showed one controller flaw causing most failures (an SMS permission not followed up). v5e fixes it and
+adds three changes developed on train tasks only. Files were hashed at 2026-10-08T17:19:03Z; the 114 MMS evaluation tasks (from
+the 267 reserve tasks no earlier evaluation used) were drawn with NIST beacon pulse 1975875 (17:21:00Z). The first pulse fetched
+(17:19:00Z) predated the freeze record by 3 s and was replaced before any episode ran. Six arms on the same tasks, including Opus
+alone; primary comparison Qwen + v5e vs Opus alone. v5c's registered result is reported unchanged. See `telecom-v5e/`.

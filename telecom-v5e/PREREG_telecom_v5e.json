@@ -1,0 +1,33 @@
+{
+ "written_utc": "2026-10-08T17:20:12.691057+00:00",
+ "frozen_files_sha256": "0a93840ed335a81b52a3e387ad212a6d74a213e473a260afe0230f216958d52d  telecom_tracker.py\nc112567134b3eb711be9a47ad0a0b18e4ca2203752e0d931d151a057023499ac  telecom_v5.py\ne0474a59eb6458cc06b86061a19b472bfe114e9dde67e73ee1b592b495fecb79  dtd_telecom_agent.py\n5c1a91bc9e786572f44be776b93e97ef257e37d89d1bb598ebdda11d3061e480  dtd_run.py\n8f6e5032e6719148f6c3450726f9b6469e3a1129e296ecc552919c767ccc9936  order_dp.json\n89cb3186278e69dba6b654454fc3463838882d31041aecd32abb45495368b80b  telecom_splits.json\n2026-10-08T17:19:03Z\n",
+ "beacon": {
+  "uri": "https://beacon.nist.gov/beacon/2.0/chain/2/pulse/1975875",
+  "timeStamp": "2026-10-08T17:21:00.000Z",
+  "outputValue": "B526097531983995EA20D4EB951BAAE2968B264EAB6C7D05FD16BE4A257B6C040B46137054A91A304F9849005C1CD51B529F86EFBD372D73306D567231ABD5A9",
+  "note": "the first-fetched pulse (17:19:00Z) was 3 s before the freeze record (17:19:03Z); replaced before any episode ran by the first pulse at least ~2 minutes after the freeze"
+ },
+ "set": {
+  "n": 114,
+  "pool": "267 reserve tasks never used by an earlier evaluation (all MMS)",
+  "rule": "random.Random(int(outputValue[:16],16)).sample(pool, 114)"
+ },
+ "why_v5e": "After the v5c registration, its blind reserve run showed 16 of 19 failures from one controller flaw (SMS permission not followed up when the customer said 'I don't see an SMS permission'). v5e fixes it and adds: syncing the controller when the LLM performs a write, an explicit fix instruction when a customer reports a fault without fixing it, and two steps per message. Developed on train tasks only (two fresh 64-task checks). v5c's registered result stands as reported.",
+ "arms": [
+  "Qwen free",
+  "Qwen + v5e (mdp)",
+  "Qwen + v5e (belief)",
+  "Qwen + v5e (pomdp)",
+  "Opus 5.5 alone",
+  "Opus 5.5 + v5e (mdp)"
+ ],
+ "customer": "Qwen3.8-27B, temperature 0",
+ "trials": 1,
+ "primary": "Qwen + v5e (mdp) vs Opus alone on the same 114 tasks (paired; McNemar; task-clustered bootstrap): is the difference within 5 points?",
+ "secondary": [
+  "each v5e arm vs Qwen free",
+  "LLM calls and agent tokens per episode",
+  "Opus + v5e vs Opus alone"
+ ],
+ "written_utc_redraw": "2026-10-08T17:21:36.366927+00:00"
+}
