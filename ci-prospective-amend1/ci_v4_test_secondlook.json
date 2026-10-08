@@ -1,0 +1,2729 @@
+{
+ "n_train": 3827,
+ "n_crawl_fit": 32789,
+ "n_test": 1173,
+ "n_real": 169,
+ "models": {
+  "om2": [
+   {
+    "intermittent": 8,
+    "regression": 4
+   },
+   {
+    "intermittent": 1.5,
+    "regression": 1.5
+   }
+  ],
+  "om3": [
+   {
+    "intermittent": 4,
+    "regression": 1
+   },
+   {
+    "intermittent": 2,
+    "regression": 4
+   }
+  ],
+  "logistic_w": [
+   0.605,
+   -0.159,
+   0.0,
+   0.134,
+   0.034,
+   -0.144,
+   -0.143,
+   -0.033,
+   -0.109,
+   -0.096,
+   0.242,
+   -0.001,
+   -0.241,
+   -0.524,
+   -0.378,
+   0.657,
+   0.975,
+   0.695,
+   0.44,
+   -0.357,
+   0.77,
+   0.0,
+   0.0,
+   -0.167,
+   -0.19,
+   1.936,
+   0.108,
+   -0.054
+  ]
+ },
+ "world": [
+  {
+   "intermittent": 4,
+   "regression": 1
+  },
+  {
+   "intermittent": 2,
+   "regression": 4
+  }
+ ],
+ "modes": {
+  "real": {
+   "n": 169,
+   "best_rule": "k2:star/escalate/escalate",
+   "policies": {
+    "POMDP v4t: v3 models + belief recalibrated on sample+crawl outcomes": {
+     "cost_per_failure": 14.846,
+     "missed regressions": 7,
+     "needless backouts": 8,
+     "escalations": 63,
+     "llm reads": 90,
+     "retriggers": 225,
+     "median_minutes_to_settle": 35.9,
+     "mean_minutes_to_settle": 39.2,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "backout"
+       ],
+       36
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "star"
+       ],
+       28
+      ],
+      [
+       [
+        "retrigger",
+        "llm",
+        "escalate"
+       ],
+       19
+      ]
+     ]
+    },
+    "POMDP v3t: v3 + calibrated evidence": {
+     "cost_per_failure": 14.164,
+     "missed regressions": 4,
+     "needless backouts": 7,
+     "escalations": 85,
+     "llm reads": 116,
+     "retriggers": 175,
+     "median_minutes_to_settle": 24.6,
+     "mean_minutes_to_settle": 31.9,
+     "top_paths": [
+      [
+       [
+        "llm",
+        "escalate"
+       ],
+       38
+      ],
+      [
+       [
+        "llm",
+        "retrigger",
+        "escalate"
+       ],
+       28
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "backout"
+       ],
+       27
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -1.809,
+      3.437
+     ]
+    },
+    "POMDP v3: crawl history + logistic prior + per-test correlated retriggers": {
+     "cost_per_failure": 15.801,
+     "missed regressions": 7,
+     "needless backouts": 18,
+     "escalations": 32,
+     "llm reads": 67,
+     "retriggers": 249,
+     "median_minutes_to_settle": 35.6,
+     "mean_minutes_to_settle": 38.5,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "backout"
+       ],
+       58
+      ],
+      [
+       [
+        "retrigger",
+        "llm",
+        "star"
+       ],
+       25
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "star"
+       ],
+       21
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -3.676,
+      1.739
+     ]
+    },
+    "POMDP v2t: v2 + calibrated evidence": {
+     "cost_per_failure": 14.907,
+     "missed regressions": 7,
+     "needless backouts": 1,
+     "escalations": 92,
+     "llm reads": 122,
+     "retriggers": 188,
+     "median_minutes_to_settle": 29.8,
+     "mean_minutes_to_settle": 35.2,
+     "top_paths": [
+      [
+       [
+        "llm",
+        "retrigger",
+        "escalate"
+       ],
+       38
+      ],
+      [
+       [
+        "llm",
+        "retrigger",
+        "star"
+       ],
+       23
+      ],
+      [
+       [
+        "llm",
+        "escalate"
+       ],
+       21
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -4.047,
+      3.657
+     ]
+    },
+    "POMDP v2: per-test correlated retriggers": {
+     "cost_per_failure": 14.663,
+     "missed regressions": 7,
+     "needless backouts": 4,
+     "escalations": 77,
+     "llm reads": 110,
+     "retriggers": 202,
+     "median_minutes_to_settle": 28.8,
+     "mean_minutes_to_settle": 34.8,
+     "top_paths": [
+      [
+       [
+        "llm",
+        "retrigger",
+        "escalate"
+       ],
+       37
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "backout"
+       ],
+       24
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "escalate"
+       ],
+       20
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -3.63,
+      3.983
+     ]
+    },
+    "POMDP v1t: v1 + calibrated evidence": {
+     "cost_per_failure": 15.213,
+     "missed regressions": 6,
+     "needless backouts": 5,
+     "escalations": 87,
+     "llm reads": 115,
+     "retriggers": 208,
+     "median_minutes_to_settle": 37.1,
+     "mean_minutes_to_settle": 38.0,
+     "top_paths": [
+      [
+       [
+        "llm",
+        "retrigger",
+        "escalate"
+       ],
+       36
+      ],
+      [
+       [
+        "retrigger",
+        "llm",
+        "escalate"
+       ],
+       32
+      ],
+      [
+       [
+        "llm",
+        "retrigger",
+        "star"
+       ],
+       26
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -4.546,
+      3.697
+     ]
+    },
+    "POMDP v1: as pre-registered": {
+     "cost_per_failure": 14.979,
+     "missed regressions": 7,
+     "needless backouts": 10,
+     "escalations": 55,
+     "llm reads": 73,
+     "retriggers": 253,
+     "median_minutes_to_settle": 37.1,
+     "mean_minutes_to_settle": 39.7,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "backout"
+       ],
+       41
+      ],
+      [
+       [
+        "retrigger",
+        "llm",
+        "star"
+       ],
+       31
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "escalate"
+       ],
+       30
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -4.003,
+      3.943
+     ]
+    },
+    "QMDP v4t: v3 models + belief recalibrated on sample+crawl outcomes": {
+     "cost_per_failure": 15.919,
+     "missed regressions": 4,
+     "needless backouts": 0,
+     "escalations": 135,
+     "llm reads": 0,
+     "retriggers": 0,
+     "median_minutes_to_settle": 15.0,
+     "mean_minutes_to_settle": 12.0,
+     "top_paths": [
+      [
+       [
+        "escalate"
+       ],
+       135
+      ],
+      [
+       [
+        "star"
+       ],
+       31
+      ],
+      [
+       [
+        "backout"
+       ],
+       3
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -4.041,
+      2.237
+     ]
+    },
+    "MDP top guess v4t: v3 models + belief recalibrated on sample+crawl outcomes": {
+     "cost_per_failure": 35.08,
+     "missed regressions": 44,
+     "needless backouts": 4,
+     "escalations": 0,
+     "llm reads": 0,
+     "retriggers": 0,
+     "median_minutes_to_settle": 0.0,
+     "mean_minutes_to_settle": 0.0,
+     "top_paths": [
+      [
+       [
+        "star"
+       ],
+       146
+      ],
+      [
+       [
+        "backout"
+       ],
+       23
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -29.419,
+      -11.925
+     ]
+    },
+    "MDP top guess after llm v4t: v3 models + belief recalibrated on sample+crawl outcomes": {
+     "cost_per_failure": 37.377,
+     "missed regressions": 48,
+     "needless backouts": 2,
+     "escalations": 0,
+     "llm reads": 169,
+     "retriggers": 0,
+     "median_minutes_to_settle": 0.1,
+     "mean_minutes_to_settle": 0.1,
+     "top_paths": [
+      [
+       [
+        "llm",
+        "star"
+       ],
+       152
+      ],
+      [
+       [
+        "llm",
+        "backout"
+       ],
+       17
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -32.165,
+      -13.79
+     ]
+    },
+    "MDP top guess after retrigger v4t: v3 models + belief recalibrated on sample+crawl outcomes": {
+     "cost_per_failure": 21.813,
+     "missed regressions": 15,
+     "needless backouts": 26,
+     "escalations": 0,
+     "llm reads": 0,
+     "retriggers": 169,
+     "median_minutes_to_settle": 23.8,
+     "mean_minutes_to_settle": 24.8,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "star"
+       ],
+       95
+      ],
+      [
+       [
+        "retrigger",
+        "backout"
+       ],
+       74
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -11.68,
+      -2.753
+     ]
+    },
+    "QMDP v3t: v3 + calibrated evidence": {
+     "cost_per_failure": 16.491,
+     "missed regressions": 3,
+     "needless backouts": 2,
+     "escalations": 141,
+     "llm reads": 0,
+     "retriggers": 0,
+     "median_minutes_to_settle": 15.0,
+     "mean_minutes_to_settle": 12.5,
+     "top_paths": [
+      [
+       [
+        "escalate"
+       ],
+       141
+      ],
+      [
+       [
+        "backout"
+       ],
+       16
+      ],
+      [
+       [
+        "star"
+       ],
+       12
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -5.012,
+      1.986
+     ]
+    },
+    "MDP top guess v3t: v3 + calibrated evidence": {
+     "cost_per_failure": 32.411,
+     "missed regressions": 29,
+     "needless backouts": 27,
+     "escalations": 0,
+     "llm reads": 0,
+     "retriggers": 0,
+     "median_minutes_to_settle": 0.0,
+     "mean_minutes_to_settle": 0.0,
+     "top_paths": [
+      [
+       [
+        "star"
+       ],
+       108
+      ],
+      [
+       [
+        "backout"
+       ],
+       61
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -25.112,
+      -11.053
+     ]
+    },
+    "MDP top guess after llm v3t: v3 + calibrated evidence": {
+     "cost_per_failure": 33.564,
+     "missed regressions": 36,
+     "needless backouts": 16,
+     "escalations": 0,
+     "llm reads": 169,
+     "retriggers": 0,
+     "median_minutes_to_settle": 0.1,
+     "mean_minutes_to_settle": 0.1,
+     "top_paths": [
+      [
+       [
+        "llm",
+        "star"
+       ],
+       126
+      ],
+      [
+       [
+        "llm",
+        "backout"
+       ],
+       43
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -26.716,
+      -11.466
+     ]
+    },
+    "MDP top guess after retrigger v3t: v3 + calibrated evidence": {
+     "cost_per_failure": 21.813,
+     "missed regressions": 13,
+     "needless backouts": 30,
+     "escalations": 0,
+     "llm reads": 0,
+     "retriggers": 169,
+     "median_minutes_to_settle": 23.8,
+     "mean_minutes_to_settle": 24.8,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "star"
+       ],
+       89
+      ],
+      [
+       [
+        "retrigger",
+        "backout"
+       ],
+       80
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -11.721,
+      -2.737
+     ]
+    },
+    "QMDP v1: as pre-registered": {
+     "cost_per_failure": 17.254,
+     "missed regressions": 6,
+     "needless backouts": 0,
+     "escalations": 133,
+     "llm reads": 0,
+     "retriggers": 0,
+     "median_minutes_to_settle": 15.0,
+     "mean_minutes_to_settle": 11.8,
+     "top_paths": [
+      [
+       [
+        "escalate"
+       ],
+       133
+      ],
+      [
+       [
+        "star"
+       ],
+       31
+      ],
+      [
+       [
+        "backout"
+       ],
+       5
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -7.667,
+      2.18
+     ]
+    },
+    "MDP top guess v1: as pre-registered": {
+     "cost_per_failure": 44.612,
+     "missed regressions": 51,
+     "needless backouts": 15,
+     "escalations": 0,
+     "llm reads": 0,
+     "retriggers": 0,
+     "median_minutes_to_settle": 0.0,
+     "mean_minutes_to_settle": 0.0,
+     "top_paths": [
+      [
+       [
+        "star"
+       ],
+       142
+      ],
+      [
+       [
+        "backout"
+       ],
+       27
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -39.39,
+      -20.288
+     ]
+    },
+    "MDP top guess after llm v1: as pre-registered": {
+     "cost_per_failure": 43.859,
+     "missed regressions": 50,
+     "needless backouts": 15,
+     "escalations": 0,
+     "llm reads": 169,
+     "retriggers": 0,
+     "median_minutes_to_settle": 0.1,
+     "mean_minutes_to_settle": 0.1,
+     "top_paths": [
+      [
+       [
+        "llm",
+        "star"
+       ],
+       141
+      ],
+      [
+       [
+        "llm",
+        "backout"
+       ],
+       28
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -38.671,
+      -19.53
+     ]
+    },
+    "MDP top guess after retrigger v1: as pre-registered": {
+     "cost_per_failure": 22.957,
+     "missed regressions": 22,
+     "needless backouts": 15,
+     "escalations": 0,
+     "llm reads": 0,
+     "retriggers": 169,
+     "median_minutes_to_settle": 23.8,
+     "mean_minutes_to_settle": 24.8,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "star"
+       ],
+       113
+      ],
+      [
+       [
+        "retrigger",
+        "backout"
+       ],
+       56
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -15.48,
+      -1.59
+     ]
+    },
+    "best rule, re-tuned on train (k2:star/escalate/escalate)": {
+     "cost_per_failure": 13.599,
+     "missed regressions": 2,
+     "needless backouts": 0,
+     "escalations": 117,
+     "llm reads": 0,
+     "retriggers": 338,
+     "median_minutes_to_settle": 57.5,
+     "mean_minutes_to_settle": 60.0,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "escalate"
+       ],
+       117
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "star"
+       ],
+       52
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -2.242,
+      4.844
+     ]
+    },
+    "retrigger once, pass->star, fail->escalate": {
+     "cost_per_failure": 13.234,
+     "missed regressions": 3,
+     "needless backouts": 0,
+     "escalations": 110,
+     "llm reads": 0,
+     "retriggers": 169,
+     "median_minutes_to_settle": 33.5,
+     "mean_minutes_to_settle": 34.6,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "escalate"
+       ],
+       110
+      ],
+      [
+       [
+        "retrigger",
+        "star"
+       ],
+       59
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -1.577,
+      4.917
+     ]
+    },
+    "always escalate": {
+     "cost_per_failure": 16.11,
+     "missed regressions": 0,
+     "needless backouts": 0,
+     "escalations": 169,
+     "llm reads": 0,
+     "retriggers": 0,
+     "median_minutes_to_settle": 15.0,
+     "mean_minutes_to_settle": 15.0,
+     "top_paths": [
+      [
+       [
+        "escalate"
+       ],
+       169
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -5.429,
+      3.012
+     ]
+    },
+    "LLM controller (Qwen, informed)": {
+     "cost_per_failure": 13.234,
+     "missed regressions": 3,
+     "needless backouts": 0,
+     "escalations": 110,
+     "llm reads": 0,
+     "retriggers": 169,
+     "median_minutes_to_settle": 33.5,
+     "mean_minutes_to_settle": 34.6,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "escalate"
+       ],
+       110
+      ],
+      [
+       [
+        "retrigger",
+        "star"
+       ],
+       59
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -1.577,
+      4.917
+     ]
+    },
+    "LLM controller (Qwen, control)": {
+     "cost_per_failure": 20.938,
+     "missed regressions": 16,
+     "needless backouts": 0,
+     "escalations": 88,
+     "llm reads": 0,
+     "retriggers": 122,
+     "median_minutes_to_settle": 25.1,
+     "mean_minutes_to_settle": 26.4,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "escalate"
+       ],
+       86
+      ],
+      [
+       [
+        "star"
+       ],
+       45
+      ],
+      [
+       [
+        "retrigger",
+        "star"
+       ],
+       36
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -12.09,
+      -0.707
+     ]
+    }
+   }
+  },
+  "sim-world": {
+   "n": 1173,
+   "best_rule": "k1:star/escalate/star",
+   "policies": {
+    "POMDP v4t: v3 models + belief recalibrated on sample+crawl outcomes": {
+     "cost_per_failure": 8.243,
+     "missed regressions": 21,
+     "needless backouts": 13,
+     "escalations": 351,
+     "llm reads": 728,
+     "retriggers": 1382,
+     "median_minutes_to_settle": 27.9,
+     "mean_minutes_to_settle": 33.9,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "backout"
+       ],
+       210
+      ],
+      [
+       [
+        "retrigger",
+        "llm",
+        "star"
+       ],
+       203
+      ],
+      [
+       [
+        "llm",
+        "star"
+       ],
+       161
+      ]
+     ]
+    },
+    "POMDP v3t: v3 + calibrated evidence": {
+     "cost_per_failure": 8.64,
+     "missed regressions": 13,
+     "needless backouts": 12,
+     "escalations": 450,
+     "llm reads": 780,
+     "retriggers": 1261,
+     "median_minutes_to_settle": 26.2,
+     "mean_minutes_to_settle": 32.7,
+     "top_paths": [
+      [
+       [
+        "llm",
+        "retrigger",
+        "star"
+       ],
+       210
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "backout"
+       ],
+       189
+      ],
+      [
+       [
+        "llm",
+        "escalate"
+       ],
+       167
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -1.011,
+      0.272
+     ]
+    },
+    "POMDP v3: crawl history + logistic prior + per-test correlated retriggers": {
+     "cost_per_failure": 7.645,
+     "missed regressions": 18,
+     "needless backouts": 39,
+     "escalations": 225,
+     "llm reads": 544,
+     "retriggers": 1390,
+     "median_minutes_to_settle": 26.2,
+     "mean_minutes_to_settle": 32.9,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "backout"
+       ],
+       237
+      ],
+      [
+       [
+        "retrigger",
+        "llm",
+        "star"
+       ],
+       171
+      ],
+      [
+       [
+        "llm",
+        "star"
+       ],
+       158
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -0.118,
+      1.3
+     ]
+    },
+    "POMDP v2t: v2 + calibrated evidence": {
+     "cost_per_failure": 9.766,
+     "missed regressions": 17,
+     "needless backouts": 13,
+     "escalations": 493,
+     "llm reads": 891,
+     "retriggers": 1201,
+     "median_minutes_to_settle": 25.7,
+     "mean_minutes_to_settle": 31.6,
+     "top_paths": [
+      [
+       [
+        "llm",
+        "retrigger",
+        "escalate"
+       ],
+       181
+      ],
+      [
+       [
+        "retrigger",
+        "llm",
+        "star"
+       ],
+       176
+      ],
+      [
+       [
+        "llm",
+        "retrigger",
+        "star"
+       ],
+       156
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -2.562,
+      -0.458
+     ]
+    },
+    "POMDP v2: per-test correlated retriggers": {
+     "cost_per_failure": 9.938,
+     "missed regressions": 22,
+     "needless backouts": 27,
+     "escalations": 409,
+     "llm reads": 757,
+     "retriggers": 1227,
+     "median_minutes_to_settle": 24.8,
+     "mean_minutes_to_settle": 30.8,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "llm",
+        "star"
+       ],
+       198
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "escalate"
+       ],
+       152
+      ],
+      [
+       [
+        "llm",
+        "retrigger",
+        "escalate"
+       ],
+       148
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -2.741,
+      -0.653
+     ]
+    },
+    "POMDP v1t: v1 + calibrated evidence": {
+     "cost_per_failure": 10.207,
+     "missed regressions": 16,
+     "needless backouts": 24,
+     "escalations": 487,
+     "llm reads": 787,
+     "retriggers": 1330,
+     "median_minutes_to_settle": 30.6,
+     "mean_minutes_to_settle": 34.3,
+     "top_paths": [
+      [
+       [
+        "llm",
+        "retrigger",
+        "star"
+       ],
+       202
+      ],
+      [
+       [
+        "llm",
+        "retrigger",
+        "escalate"
+       ],
+       151
+      ],
+      [
+       [
+        "retrigger",
+        "llm",
+        "escalate"
+       ],
+       147
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -3.061,
+      -0.859
+     ]
+    },
+    "POMDP v1: as pre-registered": {
+     "cost_per_failure": 10.084,
+     "missed regressions": 21,
+     "needless backouts": 51,
+     "escalations": 324,
+     "llm reads": 576,
+     "retriggers": 1553,
+     "median_minutes_to_settle": 28.9,
+     "mean_minutes_to_settle": 36.2,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "llm",
+        "star"
+       ],
+       289
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "escalate"
+       ],
+       213
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "backout"
+       ],
+       177
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -3.006,
+      -0.692
+     ]
+    },
+    "QMDP v4t: v3 models + belief recalibrated on sample+crawl outcomes": {
+     "cost_per_failure": 13.185,
+     "missed regressions": 37,
+     "needless backouts": 2,
+     "escalations": 656,
+     "llm reads": 0,
+     "retriggers": 0,
+     "median_minutes_to_settle": 15.0,
+     "mean_minutes_to_settle": 8.4,
+     "top_paths": [
+      [
+       [
+        "escalate"
+       ],
+       656
+      ],
+      [
+       [
+        "star"
+       ],
+       413
+      ],
+      [
+       [
+        "backout"
+       ],
+       104
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -6.094,
+      -3.847
+     ]
+    },
+    "MDP top guess v4t: v3 models + belief recalibrated on sample+crawl outcomes": {
+     "cost_per_failure": 25.435,
+     "missed regressions": 222,
+     "needless backouts": 19,
+     "escalations": 0,
+     "llm reads": 0,
+     "retriggers": 0,
+     "median_minutes_to_settle": 0.0,
+     "mean_minutes_to_settle": 0.0,
+     "top_paths": [
+      [
+       [
+        "star"
+       ],
+       966
+      ],
+      [
+       [
+        "backout"
+       ],
+       207
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -20.536,
+      -13.854
+     ]
+    },
+    "MDP top guess after llm v4t: v3 models + belief recalibrated on sample+crawl outcomes": {
+     "cost_per_failure": 26.433,
+     "missed regressions": 236,
+     "needless backouts": 9,
+     "escalations": 0,
+     "llm reads": 1173,
+     "retriggers": 0,
+     "median_minutes_to_settle": 0.1,
+     "mean_minutes_to_settle": 0.1,
+     "top_paths": [
+      [
+       [
+        "llm",
+        "star"
+       ],
+       990
+      ],
+      [
+       [
+        "llm",
+        "backout"
+       ],
+       183
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -21.761,
+      -14.761
+     ]
+    },
+    "MDP top guess after retrigger v4t: v3 models + belief recalibrated on sample+crawl outcomes": {
+     "cost_per_failure": 13.805,
+     "missed regressions": 95,
+     "needless backouts": 52,
+     "escalations": 0,
+     "llm reads": 0,
+     "retriggers": 1173,
+     "median_minutes_to_settle": 24.1,
+     "mean_minutes_to_settle": 26.1,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "star"
+       ],
+       806
+      ],
+      [
+       [
+        "retrigger",
+        "backout"
+       ],
+       367
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -7.445,
+      -3.776
+     ]
+    },
+    "POMDP depth 3 v4t: v3 models + belief recalibrated on sample+crawl outcomes": {
+     "cost_per_failure": 7.956,
+     "missed regressions": 22,
+     "needless backouts": 14,
+     "escalations": 310,
+     "llm reads": 837,
+     "retriggers": 1932,
+     "median_minutes_to_settle": 35.4,
+     "mean_minutes_to_settle": 43.9,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "retrigger",
+        "backout"
+       ],
+       226
+      ],
+      [
+       [
+        "retrigger",
+        "llm",
+        "star"
+       ],
+       161
+      ],
+      [
+       [
+        "llm",
+        "star"
+       ],
+       152
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -0.248,
+      0.825
+     ]
+    },
+    "QMDP v3t: v3 + calibrated evidence": {
+     "cost_per_failure": 12.58,
+     "missed regressions": 10,
+     "needless backouts": 6,
+     "escalations": 812,
+     "llm reads": 0,
+     "retriggers": 0,
+     "median_minutes_to_settle": 15.0,
+     "mean_minutes_to_settle": 10.4,
+     "top_paths": [
+      [
+       [
+        "escalate"
+       ],
+       812
+      ],
+      [
+       [
+        "star"
+       ],
+       189
+      ],
+      [
+       [
+        "backout"
+       ],
+       172
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -5.296,
+      -3.294
+     ]
+    },
+    "MDP top guess v3t: v3 + calibrated evidence": {
+     "cost_per_failure": 20.436,
+     "missed regressions": 137,
+     "needless backouts": 98,
+     "escalations": 0,
+     "llm reads": 0,
+     "retriggers": 0,
+     "median_minutes_to_settle": 0.0,
+     "mean_minutes_to_settle": 0.0,
+     "top_paths": [
+      [
+       [
+        "star"
+       ],
+       802
+      ],
+      [
+       [
+        "backout"
+       ],
+       371
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -14.583,
+      -9.937
+     ]
+    },
+    "MDP top guess after llm v3t: v3 + calibrated evidence": {
+     "cost_per_failure": 21.764,
+     "missed regressions": 173,
+     "needless backouts": 50,
+     "escalations": 0,
+     "llm reads": 1173,
+     "retriggers": 0,
+     "median_minutes_to_settle": 0.1,
+     "mean_minutes_to_settle": 0.1,
+     "top_paths": [
+      [
+       [
+        "llm",
+        "star"
+       ],
+       886
+      ],
+      [
+       [
+        "llm",
+        "backout"
+       ],
+       287
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -16.147,
+      -11.013
+     ]
+    },
+    "MDP top guess after retrigger v3t: v3 + calibrated evidence": {
+     "cost_per_failure": 13.805,
+     "missed regressions": 81,
+     "needless backouts": 80,
+     "escalations": 0,
+     "llm reads": 0,
+     "retriggers": 1173,
+     "median_minutes_to_settle": 24.1,
+     "mean_minutes_to_settle": 26.1,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "star"
+       ],
+       764
+      ],
+      [
+       [
+        "retrigger",
+        "backout"
+       ],
+       409
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -7.321,
+      -3.87
+     ]
+    },
+    "POMDP depth 3 v3t: v3 + calibrated evidence": {
+     "cost_per_failure": 8.01,
+     "missed regressions": 13,
+     "needless backouts": 10,
+     "escalations": 401,
+     "llm reads": 888,
+     "retriggers": 1878,
+     "median_minutes_to_settle": 41.7,
+     "mean_minutes_to_settle": 44.4,
+     "top_paths": [
+      [
+       [
+        "llm",
+        "retrigger",
+        "retrigger",
+        "star"
+       ],
+       253
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "retrigger",
+        "backout"
+       ],
+       164
+      ],
+      [
+       [
+        "llm",
+        "retrigger",
+        "retrigger",
+        "escalate"
+       ],
+       141
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -0.519,
+      1.046
+     ]
+    },
+    "QMDP v1: as pre-registered": {
+     "cost_per_failure": 16.014,
+     "missed regressions": 53,
+     "needless backouts": 8,
+     "escalations": 710,
+     "llm reads": 0,
+     "retriggers": 0,
+     "median_minutes_to_settle": 15.0,
+     "mean_minutes_to_settle": 9.1,
+     "top_paths": [
+      [
+       [
+        "escalate"
+       ],
+       710
+      ],
+      [
+       [
+        "star"
+       ],
+       353
+      ],
+      [
+       [
+        "backout"
+       ],
+       110
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -10.203,
+      -5.729
+     ]
+    },
+    "MDP top guess v1: as pre-registered": {
+     "cost_per_failure": 32.632,
+     "missed regressions": 264,
+     "needless backouts": 66,
+     "escalations": 0,
+     "llm reads": 0,
+     "retriggers": 0,
+     "median_minutes_to_settle": 0.0,
+     "mean_minutes_to_settle": 0.0,
+     "top_paths": [
+      [
+       [
+        "star"
+       ],
+       961
+      ],
+      [
+       [
+        "backout"
+       ],
+       212
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -28.173,
+      -20.676
+     ]
+    },
+    "MDP top guess after llm v1: as pre-registered": {
+     "cost_per_failure": 28.246,
+     "missed regressions": 224,
+     "needless backouts": 66,
+     "escalations": 0,
+     "llm reads": 1173,
+     "retriggers": 0,
+     "median_minutes_to_settle": 0.1,
+     "mean_minutes_to_settle": 0.1,
+     "top_paths": [
+      [
+       [
+        "llm",
+        "star"
+       ],
+       921
+      ],
+      [
+       [
+        "llm",
+        "backout"
+       ],
+       252
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -23.749,
+      -16.422
+     ]
+    },
+    "MDP top guess after retrigger v1: as pre-registered": {
+     "cost_per_failure": 23.199,
+     "missed regressions": 146,
+     "needless backouts": 121,
+     "escalations": 0,
+     "llm reads": 0,
+     "retriggers": 1173,
+     "median_minutes_to_settle": 24.1,
+     "mean_minutes_to_settle": 26.1,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "star"
+       ],
+       788
+      ],
+      [
+       [
+        "retrigger",
+        "backout"
+       ],
+       385
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -18.069,
+      -12.037
+     ]
+    },
+    "POMDP depth 3 v1: as pre-registered": {
+     "cost_per_failure": 10.555,
+     "missed regressions": 18,
+     "needless backouts": 93,
+     "escalations": 198,
+     "llm reads": 611,
+     "retriggers": 2332,
+     "median_minutes_to_settle": 44.9,
+     "mean_minutes_to_settle": 52.3,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "retrigger",
+        "backout"
+       ],
+       263
+      ],
+      [
+       [
+        "retrigger",
+        "llm",
+        "star"
+       ],
+       250
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "llm",
+        "star"
+       ],
+       156
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -3.684,
+      -0.962
+     ]
+    },
+    "best rule, re-tuned on train (k1:star/escalate/star)": {
+     "cost_per_failure": 11.992,
+     "missed regressions": 17,
+     "needless backouts": 0,
+     "escalations": 700,
+     "llm reads": 0,
+     "retriggers": 1173,
+     "median_minutes_to_settle": 34.6,
+     "mean_minutes_to_settle": 35.1,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "escalate"
+       ],
+       700
+      ],
+      [
+       [
+        "retrigger",
+        "star"
+       ],
+       473
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -4.927,
+      -2.577
+     ]
+    },
+    "retrigger once, pass->star, fail->escalate": {
+     "cost_per_failure": 11.992,
+     "missed regressions": 17,
+     "needless backouts": 0,
+     "escalations": 700,
+     "llm reads": 0,
+     "retriggers": 1173,
+     "median_minutes_to_settle": 34.6,
+     "mean_minutes_to_settle": 35.1,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "escalate"
+       ],
+       700
+      ],
+      [
+       [
+        "retrigger",
+        "star"
+       ],
+       473
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -4.927,
+      -2.577
+     ]
+    },
+    "always escalate": {
+     "cost_per_failure": 16.11,
+     "missed regressions": 0,
+     "needless backouts": 0,
+     "escalations": 1173,
+     "llm reads": 0,
+     "retriggers": 0,
+     "median_minutes_to_settle": 15.0,
+     "mean_minutes_to_settle": 15.0,
+     "top_paths": [
+      [
+       [
+        "escalate"
+       ],
+       1173
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -8.923,
+      -6.752
+     ]
+    },
+    "LLM controller (Qwen, informed)": {
+     "cost_per_failure": 11.849,
+     "missed regressions": 16,
+     "needless backouts": 0,
+     "escalations": 699,
+     "llm reads": 0,
+     "retriggers": 1138,
+     "median_minutes_to_settle": 32.8,
+     "mean_minutes_to_settle": 34.2,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "escalate"
+       ],
+       665
+      ],
+      [
+       [
+        "retrigger",
+        "star"
+       ],
+       472
+      ],
+      [
+       [
+        "escalate"
+       ],
+       34
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -4.779,
+      -2.444
+     ]
+    },
+    "LLM controller (Qwen, control)": {
+     "cost_per_failure": 15.047,
+     "missed regressions": 67,
+     "needless backouts": 0,
+     "escalations": 537,
+     "llm reads": 0,
+     "retriggers": 727,
+     "median_minutes_to_settle": 21.9,
+     "mean_minutes_to_settle": 23.5,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "escalate"
+       ],
+       417
+      ],
+      [
+       [
+        "retrigger",
+        "star"
+       ],
+       310
+      ],
+      [
+       [
+        "star"
+       ],
+       303
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -8.865,
+      -4.854
+     ]
+    }
+   }
+  },
+  "sim-v1": {
+   "n": 1173,
+   "best_rule": "k2:star/backout/escalate",
+   "policies": {
+    "POMDP v4t: v3 models + belief recalibrated on sample+crawl outcomes": {
+     "cost_per_failure": 9.514,
+     "missed regressions": 31,
+     "needless backouts": 15,
+     "escalations": 355,
+     "llm reads": 735,
+     "retriggers": 1375,
+     "median_minutes_to_settle": 27.9,
+     "mean_minutes_to_settle": 33.8,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "llm",
+        "star"
+       ],
+       206
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "backout"
+       ],
+       191
+      ],
+      [
+       [
+        "llm",
+        "star"
+       ],
+       161
+      ]
+     ]
+    },
+    "POMDP v3t: v3 + calibrated evidence": {
+     "cost_per_failure": 9.721,
+     "missed regressions": 22,
+     "needless backouts": 13,
+     "escalations": 452,
+     "llm reads": 785,
+     "retriggers": 1257,
+     "median_minutes_to_settle": 26.2,
+     "mean_minutes_to_settle": 32.8,
+     "top_paths": [
+      [
+       [
+        "llm",
+        "retrigger",
+        "star"
+       ],
+       213
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "backout"
+       ],
+       172
+      ],
+      [
+       [
+        "llm",
+        "escalate"
+       ],
+       167
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -0.864,
+      0.51
+     ]
+    },
+    "POMDP v3: crawl history + logistic prior + per-test correlated retriggers": {
+     "cost_per_failure": 9.851,
+     "missed regressions": 39,
+     "needless backouts": 38,
+     "escalations": 221,
+     "llm reads": 552,
+     "retriggers": 1387,
+     "median_minutes_to_settle": 26.4,
+     "mean_minutes_to_settle": 32.8,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "backout"
+       ],
+       211
+      ],
+      [
+       [
+        "retrigger",
+        "llm",
+        "star"
+       ],
+       181
+      ],
+      [
+       [
+        "llm",
+        "star"
+       ],
+       158
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -1.26,
+      0.518
+     ]
+    },
+    "POMDP v2t: v2 + calibrated evidence": {
+     "cost_per_failure": 9.943,
+     "missed regressions": 24,
+     "needless backouts": 5,
+     "escalations": 481,
+     "llm reads": 885,
+     "retriggers": 1207,
+     "median_minutes_to_settle": 26.0,
+     "mean_minutes_to_settle": 31.7,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "llm",
+        "star"
+       ],
+       175
+      ],
+      [
+       [
+        "llm",
+        "retrigger",
+        "star"
+       ],
+       171
+      ],
+      [
+       [
+        "llm",
+        "retrigger",
+        "escalate"
+       ],
+       166
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -1.516,
+      0.632
+     ]
+    },
+    "POMDP v2: per-test correlated retriggers": {
+     "cost_per_failure": 10.4,
+     "missed regressions": 34,
+     "needless backouts": 15,
+     "escalations": 394,
+     "llm reads": 755,
+     "retriggers": 1230,
+     "median_minutes_to_settle": 24.9,
+     "mean_minutes_to_settle": 30.6,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "llm",
+        "star"
+       ],
+       195
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "escalate"
+       ],
+       151
+      ],
+      [
+       [
+        "llm",
+        "retrigger",
+        "escalate"
+       ],
+       134
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -2.079,
+      0.227
+     ]
+    },
+    "POMDP v1t: v1 + calibrated evidence": {
+     "cost_per_failure": 10.018,
+     "missed regressions": 21,
+     "needless backouts": 12,
+     "escalations": 480,
+     "llm reads": 774,
+     "retriggers": 1344,
+     "median_minutes_to_settle": 31.4,
+     "mean_minutes_to_settle": 34.8,
+     "top_paths": [
+      [
+       [
+        "llm",
+        "retrigger",
+        "star"
+       ],
+       206
+      ],
+      [
+       [
+        "llm",
+        "retrigger",
+        "escalate"
+       ],
+       147
+      ],
+      [
+       [
+        "retrigger",
+        "llm",
+        "escalate"
+       ],
+       132
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -1.693,
+      0.651
+     ]
+    },
+    "POMDP v1: as pre-registered": {
+     "cost_per_failure": 9.623,
+     "missed regressions": 29,
+     "needless backouts": 27,
+     "escalations": 322,
+     "llm reads": 583,
+     "retriggers": 1551,
+     "median_minutes_to_settle": 29.6,
+     "mean_minutes_to_settle": 36.0,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "llm",
+        "star"
+       ],
+       300
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "escalate"
+       ],
+       220
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "star"
+       ],
+       159
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -1.305,
+      1.047
+     ]
+    },
+    "QMDP v4t: v3 models + belief recalibrated on sample+crawl outcomes": {
+     "cost_per_failure": 13.185,
+     "missed regressions": 37,
+     "needless backouts": 2,
+     "escalations": 656,
+     "llm reads": 0,
+     "retriggers": 0,
+     "median_minutes_to_settle": 15.0,
+     "mean_minutes_to_settle": 8.4,
+     "top_paths": [
+      [
+       [
+        "escalate"
+       ],
+       656
+      ],
+      [
+       [
+        "star"
+       ],
+       413
+      ],
+      [
+       [
+        "backout"
+       ],
+       104
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -4.885,
+      -2.449
+     ]
+    },
+    "MDP top guess v4t: v3 models + belief recalibrated on sample+crawl outcomes": {
+     "cost_per_failure": 25.435,
+     "missed regressions": 222,
+     "needless backouts": 19,
+     "escalations": 0,
+     "llm reads": 0,
+     "retriggers": 0,
+     "median_minutes_to_settle": 0.0,
+     "mean_minutes_to_settle": 0.0,
+     "top_paths": [
+      [
+       [
+        "star"
+       ],
+       966
+      ],
+      [
+       [
+        "backout"
+       ],
+       207
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -19.291,
+      -12.632
+     ]
+    },
+    "MDP top guess after llm v4t: v3 models + belief recalibrated on sample+crawl outcomes": {
+     "cost_per_failure": 26.433,
+     "missed regressions": 236,
+     "needless backouts": 9,
+     "escalations": 0,
+     "llm reads": 1173,
+     "retriggers": 0,
+     "median_minutes_to_settle": 0.1,
+     "mean_minutes_to_settle": 0.1,
+     "top_paths": [
+      [
+       [
+        "llm",
+        "star"
+       ],
+       990
+      ],
+      [
+       [
+        "llm",
+        "backout"
+       ],
+       183
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -20.463,
+      -13.612
+     ]
+    },
+    "MDP top guess after retrigger v4t: v3 models + belief recalibrated on sample+crawl outcomes": {
+     "cost_per_failure": 16.387,
+     "missed regressions": 113,
+     "needless backouts": 63,
+     "escalations": 0,
+     "llm reads": 0,
+     "retriggers": 1173,
+     "median_minutes_to_settle": 24.1,
+     "mean_minutes_to_settle": 26.1,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "star"
+       ],
+       813
+      ],
+      [
+       [
+        "retrigger",
+        "backout"
+       ],
+       360
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -8.822,
+      -4.972
+     ]
+    },
+    "POMDP depth 3 v4t: v3 models + belief recalibrated on sample+crawl outcomes": {
+     "cost_per_failure": 10.105,
+     "missed regressions": 42,
+     "needless backouts": 17,
+     "escalations": 294,
+     "llm reads": 859,
+     "retriggers": 1912,
+     "median_minutes_to_settle": 35.6,
+     "mean_minutes_to_settle": 43.5,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "retrigger",
+        "backout"
+       ],
+       197
+      ],
+      [
+       [
+        "retrigger",
+        "llm",
+        "star"
+       ],
+       171
+      ],
+      [
+       [
+        "llm",
+        "star"
+       ],
+       152
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -1.492,
+      0.352
+     ]
+    },
+    "QMDP v3t: v3 + calibrated evidence": {
+     "cost_per_failure": 12.58,
+     "missed regressions": 10,
+     "needless backouts": 6,
+     "escalations": 812,
+     "llm reads": 0,
+     "retriggers": 0,
+     "median_minutes_to_settle": 15.0,
+     "mean_minutes_to_settle": 10.4,
+     "top_paths": [
+      [
+       [
+        "escalate"
+       ],
+       812
+      ],
+      [
+       [
+        "star"
+       ],
+       189
+      ],
+      [
+       [
+        "backout"
+       ],
+       172
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -4.219,
+      -1.893
+     ]
+    },
+    "MDP top guess v3t: v3 + calibrated evidence": {
+     "cost_per_failure": 20.436,
+     "missed regressions": 137,
+     "needless backouts": 98,
+     "escalations": 0,
+     "llm reads": 0,
+     "retriggers": 0,
+     "median_minutes_to_settle": 0.0,
+     "mean_minutes_to_settle": 0.0,
+     "top_paths": [
+      [
+       [
+        "star"
+       ],
+       802
+      ],
+      [
+       [
+        "backout"
+       ],
+       371
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -13.235,
+      -8.612
+     ]
+    },
+    "MDP top guess after llm v3t: v3 + calibrated evidence": {
+     "cost_per_failure": 21.764,
+     "missed regressions": 173,
+     "needless backouts": 50,
+     "escalations": 0,
+     "llm reads": 1173,
+     "retriggers": 0,
+     "median_minutes_to_settle": 0.1,
+     "mean_minutes_to_settle": 0.1,
+     "top_paths": [
+      [
+       [
+        "llm",
+        "star"
+       ],
+       886
+      ],
+      [
+       [
+        "llm",
+        "backout"
+       ],
+       287
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -14.852,
+      -9.791
+     ]
+    },
+    "MDP top guess after retrigger v3t: v3 + calibrated evidence": {
+     "cost_per_failure": 16.002,
+     "missed regressions": 97,
+     "needless backouts": 88,
+     "escalations": 0,
+     "llm reads": 0,
+     "retriggers": 1173,
+     "median_minutes_to_settle": 24.1,
+     "mean_minutes_to_settle": 26.1,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "star"
+       ],
+       772
+      ],
+      [
+       [
+        "retrigger",
+        "backout"
+       ],
+       401
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -8.192,
+      -4.752
+     ]
+    },
+    "POMDP depth 3 v3t: v3 + calibrated evidence": {
+     "cost_per_failure": 9.15,
+     "missed regressions": 24,
+     "needless backouts": 12,
+     "escalations": 388,
+     "llm reads": 913,
+     "retriggers": 1854,
+     "median_minutes_to_settle": 40.9,
+     "mean_minutes_to_settle": 43.8,
+     "top_paths": [
+      [
+       [
+        "llm",
+        "retrigger",
+        "retrigger",
+        "star"
+       ],
+       258
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "retrigger",
+        "backout"
+       ],
+       147
+      ],
+      [
+       [
+        "llm",
+        "retrigger",
+        "retrigger",
+        "escalate"
+       ],
+       131
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -0.421,
+      1.215
+     ]
+    },
+    "QMDP v1: as pre-registered": {
+     "cost_per_failure": 16.014,
+     "missed regressions": 53,
+     "needless backouts": 8,
+     "escalations": 710,
+     "llm reads": 0,
+     "retriggers": 0,
+     "median_minutes_to_settle": 15.0,
+     "mean_minutes_to_settle": 9.1,
+     "top_paths": [
+      [
+       [
+        "escalate"
+       ],
+       710
+      ],
+      [
+       [
+        "star"
+       ],
+       353
+      ],
+      [
+       [
+        "backout"
+       ],
+       110
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -8.875,
+      -4.403
+     ]
+    },
+    "MDP top guess v1: as pre-registered": {
+     "cost_per_failure": 32.632,
+     "missed regressions": 264,
+     "needless backouts": 66,
+     "escalations": 0,
+     "llm reads": 0,
+     "retriggers": 0,
+     "median_minutes_to_settle": 0.0,
+     "mean_minutes_to_settle": 0.0,
+     "top_paths": [
+      [
+       [
+        "star"
+       ],
+       961
+      ],
+      [
+       [
+        "backout"
+       ],
+       212
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -27.006,
+      -19.466
+     ]
+    },
+    "MDP top guess after llm v1: as pre-registered": {
+     "cost_per_failure": 28.246,
+     "missed regressions": 224,
+     "needless backouts": 66,
+     "escalations": 0,
+     "llm reads": 1173,
+     "retriggers": 0,
+     "median_minutes_to_settle": 0.1,
+     "mean_minutes_to_settle": 0.1,
+     "top_paths": [
+      [
+       [
+        "llm",
+        "star"
+       ],
+       921
+      ],
+      [
+       [
+        "llm",
+        "backout"
+       ],
+       252
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -22.373,
+      -15.335
+     ]
+    },
+    "MDP top guess after retrigger v1: as pre-registered": {
+     "cost_per_failure": 23.034,
+     "missed regressions": 155,
+     "needless backouts": 100,
+     "escalations": 0,
+     "llm reads": 0,
+     "retriggers": 1173,
+     "median_minutes_to_settle": 24.1,
+     "mean_minutes_to_settle": 26.1,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "star"
+       ],
+       818
+      ],
+      [
+       [
+        "retrigger",
+        "backout"
+       ],
+       355
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -16.462,
+      -10.682
+     ]
+    },
+    "POMDP depth 3 v1: as pre-registered": {
+     "cost_per_failure": 8.875,
+     "missed regressions": 27,
+     "needless backouts": 38,
+     "escalations": 223,
+     "llm reads": 635,
+     "retriggers": 2327,
+     "median_minutes_to_settle": 44.9,
+     "mean_minutes_to_settle": 52.7,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "llm",
+        "star"
+       ],
+       249
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "retrigger",
+        "backout"
+       ],
+       195
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "llm",
+        "star"
+       ],
+       181
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -0.641,
+      1.993
+     ]
+    },
+    "best rule, re-tuned on train (k2:star/backout/escalate)": {
+     "cost_per_failure": 13.67,
+     "missed regressions": 8,
+     "needless backouts": 120,
+     "escalations": 377,
+     "llm reads": 0,
+     "retriggers": 2346,
+     "median_minutes_to_settle": 52.3,
+     "mean_minutes_to_settle": 57.0,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "backout"
+       ],
+       453
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "escalate"
+       ],
+       377
+      ],
+      [
+       [
+        "retrigger",
+        "retrigger",
+        "star"
+       ],
+       343
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -5.778,
+      -2.534
+     ]
+    },
+    "retrigger once, pass->star, fail->escalate": {
+     "cost_per_failure": 13.709,
+     "missed regressions": 40,
+     "needless backouts": 0,
+     "escalations": 641,
+     "llm reads": 0,
+     "retriggers": 1173,
+     "median_minutes_to_settle": 33.7,
+     "mean_minutes_to_settle": 34.3,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "escalate"
+       ],
+       641
+      ],
+      [
+       [
+        "retrigger",
+        "star"
+       ],
+       532
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -5.872,
+      -2.584
+     ]
+    },
+    "always escalate": {
+     "cost_per_failure": 16.11,
+     "missed regressions": 0,
+     "needless backouts": 0,
+     "escalations": 1173,
+     "llm reads": 0,
+     "retriggers": 0,
+     "median_minutes_to_settle": 15.0,
+     "mean_minutes_to_settle": 15.0,
+     "top_paths": [
+      [
+       [
+        "escalate"
+       ],
+       1173
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -7.81,
+      -5.259
+     ]
+    },
+    "LLM controller (Qwen, informed)": {
+     "cost_per_failure": 13.566,
+     "missed regressions": 39,
+     "needless backouts": 0,
+     "escalations": 640,
+     "llm reads": 0,
+     "retriggers": 1138,
+     "median_minutes_to_settle": 31.9,
+     "mean_minutes_to_settle": 33.5,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "escalate"
+       ],
+       606
+      ],
+      [
+       [
+        "retrigger",
+        "star"
+       ],
+       531
+      ],
+      [
+       [
+        "escalate"
+       ],
+       34
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -5.723,
+      -2.451
+     ]
+    },
+    "LLM controller (Qwen, control)": {
+     "cost_per_failure": 15.968,
+     "missed regressions": 81,
+     "needless backouts": 0,
+     "escalations": 492,
+     "llm reads": 0,
+     "retriggers": 727,
+     "median_minutes_to_settle": 21.6,
+     "mean_minutes_to_settle": 22.9,
+     "top_paths": [
+      [
+       [
+        "retrigger",
+        "escalate"
+       ],
+       372
+      ],
+      [
+       [
+        "retrigger",
+        "star"
+       ],
+       355
+      ],
+      [
+       [
+        "star"
+       ],
+       303
+      ]
+     ],
+     "ref_minus_this_ci": [
+      -8.71,
+      -4.305
+     ]
+    }
+   }
+  }
+ },
+ "dp_v3_solve_microseconds": {
+  "median": 93.6,
+  "p90": 99.0
+ },
+ "window": "test"
+}

@@ -54,3 +54,13 @@ costs 2 developer-hours and a needless backout 1 hour.
 | `ci_facts.json` (numbers given to the informed LLM) | `45eef9bd2a27ccb2c09201229406877fe237b10b8672643f1a779436882527c6` |
 
 Check with `shasum -a 256 ci-prospective/*`.
+
+## Amendment 1 (2026-10-08): repaired CI outcome model
+
+`ci-prospective-amend1/` adds arms to the prospective CI test without changing the original registration. After the first freeze,
+the outcome model was found to treat retriggers of the same failure as independent and to give every test in a suite one
+flakiness rate. The repaired DP (per-test flakiness, correlated retriggers, a P(regression) model using the test's label history
+and push signals, and a recalibrated belief) was developed on the train window only and scored twice on the retrospective test
+window. It wins there with simulated outcomes but loses to "retrigger once, then escalate" on the 169 failures whose
+outcomes were all observed. The prospective window, crawled only after this commit, decides. See
+`ci-prospective-amend1/PREREG_ci_prospective_amend1.json` for arms, scoring modes, predictions, forecasts and file hashes.

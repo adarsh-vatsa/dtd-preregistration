@@ -1,0 +1,63 @@
+{
+ "amends": "ci-prospective/PREREG_ci_prospective.json (commit 607ba1e, frozen 2026-10-07T09:18:41Z). The original registration is unchanged; this adds arms.",
+ "written_utc": "2026-10-08T08:21:17.059355+00:00",
+ "statement": "Written before any failure from the prospective window (2026-10-07T09:18:41Z to 2026-10-21T00:00:00Z) was crawled or viewed.",
+ "why": "After the 2026-10-07 freeze, the CI outcome model was found to be misspecified (retriggers treated as independent, one flakiness rate per suite). The repaired model was developed on the train window only; the retrospective test window was then scored twice (v3t once frozen, then v4t as a labelled second look). This registration lets the prospective window, which no one has seen, decide.",
+ "new_arms": {
+  "dp_v4t (primary new arm)": "ci_triage3.DP4 built by ci_triage3.build() on the analysis sample before 2026-09-06 plus the crawl's detail rows before 2026-09-06; belief recalibrated with ci_calib_v4.json (Platt map fitted on train-window failures with real retrigger outcomes); finite-horizon belief DP (POMDP), depth 2",
+  "dp_v3t (secondary)": "ci_triage3.DP with TEMPER['v3'] = (0.75, 0.5, 1.5), same models",
+  "dp_v4t_depth3 (secondary)": "dp_v4t allowed one extra information move (simulated scoring modes only)",
+  "decide-step ablation (secondary)": "QMDP and top-guess MDP variants of dp_v4t as defined in ci_triage3.pol_qmdp / pol_mdp"
+ },
+ "unchanged": "dp_v1 (original DP), best rule re-tuned on train under each scoring mode, Qwen and Opus LLM controllers with the frozen prompts, costs, the week-2 price change (macOS x5, Windows x2 from 2026-10-14), sampling of failures, label cut-off 2026-10-23.",
+ "scoring_modes": {
+  "original": "as registered: real same-push retrigger outcomes when observed, otherwise drawn from the frozen v1 odds",
+  "world": "real outcomes when observed, otherwise drawn from a per-test beta-binomial fitted on all data available at scoring time (train, test and prospective windows), conditional on the outcomes observed for that failure",
+  "real_only": "only failures whose first two retrigger outcomes were observed; real outcomes only (a stress test of the outcome model: these failures were selected by Mozilla retriggering them at least twice)"
+ },
+ "predictions": {
+  "A1": "original and world modes, each week: dp_v4t minus best re-tuned rule < 0 (95% push-clustered interval below zero)",
+  "A2": "original and world modes, each week: dp_v4t minus each LLM controller < 0",
+  "A3": "real_only mode (both weeks pooled): no directional prediction; on the retrospective test dp_v4t lost to 'retrigger once, then escalate' (14.85 vs 13.23 per failure, n = 169, interval includes zero). Reported either way.",
+  "A4": "dp_v4t cost per failure in original mode falls within the forecast band below (week 1)"
+ },
+ "forecasts_from_retrospective_test_window_2026-09-06_to_2026-10-04 (1,173 failures; week-1 prices)": {
+  "original mode": {
+   "dp_v4t": 9.514,
+   "best_rule": "k2:star/backout/escalate",
+   "dp_v4t_minus_retrigger_once_ci": [
+    -5.872,
+    -2.584
+   ],
+   "dp_v4t_minus_qwen_informed_ci": [
+    -5.723,
+    -2.451
+   ],
+   "band_for_A4": [
+    7.14,
+    11.89
+   ]
+  },
+  "world mode": {
+   "dp_v4t": 8.243,
+   "dp_v4t_minus_retrigger_once_ci": [
+    -4.927,
+    -2.577
+   ]
+  },
+  "real_only mode": {
+   "dp_v4t": 14.846,
+   "retrigger_once": 13.234,
+   "n": 169
+  }
+ },
+ "data_hashes_note": "Frozen models are rebuilt from the analysis sample (data/treeherder/sample/sample.jsonl) and the crawl (data/treeherder/jobs, detail) as of 2026-10-06; file hashes are in ci_v4_frozen_sha256.txt (the LLM verdict file ci_llm_verdict.jsonl: e1db964c...).",
+ "sha256": {
+  "ci_triage.py": "b9576d1b2552a4a407ec39dccc2352e7df5a52d624df60bd614f2b23412b592f",
+  "ci_triage2.py": "d4401e407fd961c99525f364095d1fbcd9b9ad901c1b67e06331439d07684459",
+  "ci_triage3.py": "9e5e179ad478b9ce1c4b407e03de4d53cbfec8705275857df4931e9a7679c515",
+  "ci_history.py": "abbc4b30b159f75c391cf47cd0918593ee0411e34d423a3bf77401b58dd446a5",
+  "ci_calib_v4.py": "f66bd7dd016ed8f463741c65ef50564cbb4cfe6d9b119b905be21b65ea31b982",
+  "ci_calib_v4.json": "32b3199d82a71bd1a83df23153680496c0645ab3e7ded33b9a5240fd44a0df57"
+ }
+}
