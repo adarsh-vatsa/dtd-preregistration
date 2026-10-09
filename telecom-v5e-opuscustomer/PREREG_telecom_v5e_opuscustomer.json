@@ -1,0 +1,27 @@
+{
+ "title": "tau2-telecom v5e with Claude Opus 5.5 as the simulated customer (registered robustness test)",
+ "registered_utc": "2026-10-09T17:58:15Z",
+ "status": "registered before any Phase-1 episode; Phase-2/3 arms registered before any of their episodes",
+ "motivation": "All registered telecom arms used Qwen3.8-27B as the simulated customer. An unregistered check on the first 50 tasks of the registered v5e draw (Opus customer) gave Qwen alone 36/50 and Qwen + v5e 50/50 (+28 points). This registration extends the check to the rest of the draw and to the strongest baselines.",
+ "tasks": {
+  "confirmatory": "the 64 tasks of the registered v5e draw (v5e_eval_ids.txt lines 51-114) that have never been run with an Opus customer; listed in confirm_ids_64.txt",
+  "secondary": "all 114 tasks of the registered v5e draw",
+  "disclosure": "These tasks are not newly drawn. Their outcomes with the Qwen customer are known (registered v5e results); their outcomes with the Opus customer are not. The forecasts below are taken from the 50-task exploratory check."
+ },
+ "customer": "Claude Opus 5.5 through the claude -p shim (system prompt replaced by tau2's user-simulator prompt via --system-prompt-file; tools disabled; default reasoning settings), the same shim used for the Opus agent arms",
+ "controller": "frozen v5e executor (telecom_v5.py c112567134b3eb711be9a47ad0a0b18e4ca2203752e0d931d151a057023499ac, telecom_tracker.py 0a93840ed335a81b52a3e387ad212a6d74a213e473a260afe0230f216958d52d, dtd_run.py 5c1a91bc9e786572f44be776b93e97ef257e37d89d1bb598ebdda11d3061e480, order_dp.json 8f6e5032e6719148f6c3450726f9b6469e3a1129e296ecc552919c767ccc9936); dtd_telecom_agent.py 256d14d2085923e50484f246c216ce25c339eacafecdf187b9944416b9c63aed differs from the registered v5e file only by the env-gated checklist and no-LLM ablation switches",
+ "arms": {
+  "phase1": ["Qwen alone (thinking off, temperature 0) on the 64 confirmatory tasks", "Qwen + v5e (fixed order) on the 64 confirmatory tasks"],
+  "phase2": ["Qwen with thinking + the controller's checklist in its prompt, all 114", "Opus + v5e, all 114"],
+  "phase3": ["Opus alone, all 114", "Qwen with thinking alone, all 114"]
+ },
+ "primary_hypothesis": "On the 64 confirmatory tasks, Qwen + v5e solves more tasks than Qwen alone: paired task-level bootstrap 95% interval of the difference in success rate excludes 0.",
+ "forecasts": {
+  "phase1_difference_points": "+28 (from the exploratory 50); success Qwen alone ~72%, Qwen + v5e ~95%",
+  "phase1_calls_per_conversation": "Qwen + v5e < 2; Qwen alone > 15",
+  "phase2_opus_mdp": "Opus + v5e solves within 3 points of Opus alone or better, with < 1.5 model calls per conversation",
+  "phase2_thinking_checklist": "no forecast of accuracy (the Qwen-customer arm is still running at registration); report calls and agent tokens including thinking"
+ },
+ "analysis": "success = tau2 reward 1; paired bootstrap over tasks (4000 resamples, seed 11) as in v5_analyze.py; calls = LLM calls by the agent per conversation; customer messages per conversation reported for every arm. Episodes that end in an infrastructure error with no outcome are rerun once with the same code, and the number rerun is reported per arm.",
+ "reporting": "All arms are reported whatever the result, in the paper's registration appendix."
+}
