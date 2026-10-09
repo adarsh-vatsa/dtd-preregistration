@@ -1,0 +1,53 @@
+{
+ "title": "tau2-telecom DtD v5f: registered blind evaluation on draw 3",
+ "why_v5f": "Diagnosis of v5e on the spent draws 1-2 and train-split logs (no reserve task outside draws 0-2 was read): 87-89% of Qwen + v5e's LLM turns came after every check had been sent while the customer still reported a failure, usually because the tracker had discarded a fault the customer reported (v5e's message-wide 'fix done' regex fired on any 'reset'/'turned' and dropped every fault report in the message; 74 of 164 misses), or because a reply without a result ('let me check that first') was taken as a result. v5f reads fault evidence from every customer message clause by clause, sends the matching fix (at most twice per fault; app permissions with the missing names; a restart after an APN reset), re-asks a step answered without a result once, stops bundling after a customer refuses two steps, and, when every check has been sent and the problem persists, asks for the readouts that reveal the remaining fault before handing the turn to the LLM. No task-id logic. The optional LLM loop breaker from the diagnosis is NOT included.",
+ "development_check": "60 train-split tasks (seeded sample, 45 MMS + 15 mobile data), Qwen agent and customer, thinking off: v5f 58/60 (0.32 calls per conversation on the 50 tasks both arms had finished) vs v5e 46/50 (2.68 calls). Development evidence only.",
+ "ablation_context": "Unregistered draw-2 ablations run before this freeze: Qwen + v5e with a thinking LLM fallback solved 111 of the first 113 tasks finished; Qwen + v5e in the manual's order 103/114 and in random order 97/114 (fixed order 102/114).",
+ "customer": "Qwen3.8-27B, temperature 0, as in every registered telecom run",
+ "trials": 1,
+ "arms": [
+  "Qwen free (thinking off; tau2 llm_agent behaviour inside dtd_agent, mode free)",
+  "Qwen + v5f, fixed order (thinking off)",
+  "Qwen + v5f, QMDP (thinking off)",
+  "Qwen + v5f, POMDP (thinking off)",
+  "Qwen + v5f, fixed order, LLM fallback with thinking on (temperature 0.6, top_p 0.95)",
+  "Qwen with thinking + the controller's checklist in its prompt (strongest prompted baseline; secondary, may finish last)",
+  "Opus 5.5 alone (tau2 llm_agent via the claude -p shim)",
+  "Opus 5.5 + v5f, fixed order"
+ ],
+ "primary": "success of Qwen + v5f (fixed order, thinking off) vs Qwen free on draw 3 (paired by task; task-clustered bootstrap, 4000 resamples, seed 11); confirmed if the 95% interval excludes 0",
+ "targets_stated_in_advance": [
+  "T1: Qwen + v5f (fixed order, thinking off) finishes within 5 points of Opus alone (point estimate of the paired difference >= -5.0 points)",
+  "T2: Qwen + v5f with the thinking fallback finishes within 2 points of Opus alone or better (point estimate >= -2.0 points)",
+  "T3: LLM calls per conversation: Qwen + v5f (thinking off) < 2.0; Opus + v5f < 1.0"
+ ],
+ "forecasts": {
+  "Qwen free": "25-35% of tasks (draw-2 rate 27%)",
+  "Qwen + v5f fixed order": "about 106/114 (93%)",
+  "Qwen + v5f QMDP / POMDP": "within 5 points of the fixed order",
+  "Qwen + v5f thinking fallback": "about 110/114",
+  "Qwen thinking + checklist": "no forecast",
+  "Opus alone": "about 111/114",
+  "Opus + v5f": "about 113/114, < 1 call per conversation"
+ },
+ "secondary": [
+  "each v5f arm vs Qwen free",
+  "Opus + v5f vs Opus alone",
+  "agent LLM calls, agent tokens (incl. thinking) and customer messages per conversation",
+  "failure causes"
+ ],
+ "reruns": "episodes that end in an infrastructure error with no outcome are rerun once with the same code; counts reported per arm",
+ "reporting": "every arm is reported whatever the result, in the paper's registration appendix",
+ "written_utc": "2026-10-09T20:00:30.277392+00:00",
+ "frozen_files_sha256": "a1c06c4fe84dfd1800141c64088b519b7574be0ae3a563a2f0d7c3df56e62086  dtd_telecom_agent.py\na20179a77ab28082036ccc5dbc3e01c9cdfef7ea272c82f889cc273579e83e80  telecom_v5.py\n1ea0252446befff6d6059aa9cfd2248ea46c8fc82e89a90e49d677d8b68a0e60  telecom_tracker.py\n5c1a91bc9e786572f44be776b93e97ef257e37d89d1bb598ebdda11d3061e480  dtd_run.py\n8f6e5032e6719148f6c3450726f9b6469e3a1129e296ecc552919c767ccc9936  order_dp.json\n89cb3186278e69dba6b654454fc3463838882d31041aecd32abb45495368b80b  telecom_splits.json\n95bc00cf387b02951495465edec3522b8df58b1cde2e59883373efeb5b0f4d33  dtd_retail_agent.py\nb793efa2c6a67eb54d91a7585cc130cd43ff30563c29e60c5287a7d8b4cb9fe2  run_v5f_eval.sh\n2026-10-09T19:58:29Z\n",
+ "beacon": {
+  "uri": "https://beacon.nist.gov/beacon/2.0/chain/2/pulse/1976363",
+  "timeStamp": "2026-10-09T20:00:00.000Z",
+  "outputValue": "8AF2593748BB4CC40B3BEBABBE61EEC7194058E4DE99AA802E9E15108E66128D59573C57DA872B17F284DCBA99AC7102249BB487332BF1FEBBFFC7504BF459F6"
+ },
+ "set": {
+  "n": 114,
+  "pool": "the 153 reserve tasks never used by an earlier evaluation (all MMS; draws 0, 1 and 2 removed)",
+  "rule": "random.Random(int(outputValue[:16],16)).sample(sorted(pool), 114)"
+ }
+}
