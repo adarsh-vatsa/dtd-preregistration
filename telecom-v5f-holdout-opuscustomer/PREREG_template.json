@@ -1,0 +1,20 @@
+{
+ "title": "tau2-telecom DtD v5f on the holdout with Claude Opus 5.5 as the customer, 3 trials per task (registered)",
+ "motivation": "Reviewers asked for (i) the third controller on the held-out-fault pool, (ii) a stronger simulated customer for every arm, and (iii) repeated trials with pass^k, tau2's standard metric. All three in one registered run.",
+ "controller": "the frozen v5f files in bounded_v5f_frozen (hashes in v5f_frozen_sha256.txt, registered in telecom-v5f, commit 51db041); unchanged",
+ "tasks": "60 tasks drawn from the 441 holdout tasks never used by an earlier evaluation (every holdout task contains break_app_storage_permission, a fault type absent from all fitting data; v5f's app-permission template names the storage permission, so this tests transfer of the fitted fault probabilities, not template coverage). Draw rule below; pulse at least 60 s after this file is hashed.",
+ "customer": "Claude Opus 5.5 through the claude -p shim (system prompt replaced by tau2's user-simulator prompt; tools disabled; default reasoning; no temperature control, so trials differ)",
+ "trials": 3,
+ "arms": ["Qwen free (thinking off)", "Qwen + v5f, fixed order (thinking off)", "Qwen + v5f, fixed order, thinking fallback (temperature 0.6, top_p 0.95)", "Opus 5.5 alone (tau2 llm_agent)", "Opus 5.5 + v5f, fixed order"],
+ "primary": "success averaged over the 3 trials (pass^1), Qwen + v5f (thinking off) vs Qwen free, paired by task, task-clustered bootstrap (4000 resamples, seed 11); confirmed if the 95% interval excludes 0",
+ "targets_stated_in_advance": [
+  "H1: Qwen + v5f (thinking off) pass^1 within 5 points of Opus alone (point estimate)",
+  "H2: Qwen + v5f with the thinking fallback pass^1 within 3 points of Opus alone (point estimate)",
+  "H3: Qwen + v5f pass^3 exceeds Qwen free pass^3 by at least 25 points",
+  "H4: LLM calls per conversation: Qwen + v5f < 2.5; Opus + v5f < 1.0"
+ ],
+ "forecasts": {"Qwen free pass^1": "55-70% (the Opus customer lifted Qwen alone to 70% on draw-2 tasks)", "Qwen + v5f pass^1": "about 95%", "thinking fallback pass^1": "about 96%", "Opus alone pass^1": "about 97%", "Opus + v5f pass^1": "about 98%", "pass^3": "about 5-15 points below pass^1 for the free arms, 0-6 below for v5f arms"},
+ "metrics": "pass^1 = mean success over trials; pass^k = share of tasks solved in all k of 3 trials (k = 1..3, tau2's definition); calls and agent tokens per conversation; customer messages per conversation; zero-call conversations.",
+ "reruns": "episodes ending in an infrastructure error with no outcome are rerun once with the same code; counts reported per arm",
+ "reporting": "every arm is reported whatever the result, in the paper's registration appendix"
+}

@@ -1,0 +1,45 @@
+{
+ "title": "tau2-telecom DtD v5f on the holdout with Claude Opus 5.5 as the customer, 3 trials per task (registered)",
+ "motivation": "Reviewers asked for (i) the third controller on the held-out-fault pool, (ii) a stronger simulated customer for every arm, and (iii) repeated trials with pass^k, tau2's standard metric. All three in one registered run.",
+ "controller": "the frozen v5f files in bounded_v5f_frozen (hashes in v5f_frozen_sha256.txt, registered in telecom-v5f, commit 51db041); unchanged",
+ "tasks": "60 tasks drawn from the 441 holdout tasks never used by an earlier evaluation (every holdout task contains break_app_storage_permission, a fault type absent from all fitting data; v5f's app-permission template names the storage permission, so this tests transfer of the fitted fault probabilities, not template coverage). Draw rule below; pulse at least 60 s after this file is hashed.",
+ "customer": "Claude Opus 5.5 through the claude -p shim (system prompt replaced by tau2's user-simulator prompt; tools disabled; default reasoning; no temperature control, so trials differ)",
+ "trials": 3,
+ "arms": [
+  "Qwen free (thinking off)",
+  "Qwen + v5f, fixed order (thinking off)",
+  "Qwen + v5f, fixed order, thinking fallback (temperature 0.6, top_p 0.95)",
+  "Opus 5.5 alone (tau2 llm_agent)",
+  "Opus 5.5 + v5f, fixed order"
+ ],
+ "primary": "success averaged over the 3 trials (pass^1), Qwen + v5f (thinking off) vs Qwen free, paired by task, task-clustered bootstrap (4000 resamples, seed 11); confirmed if the 95% interval excludes 0",
+ "targets_stated_in_advance": [
+  "H1: Qwen + v5f (thinking off) pass^1 within 5 points of Opus alone (point estimate)",
+  "H2: Qwen + v5f with the thinking fallback pass^1 within 3 points of Opus alone (point estimate)",
+  "H3: Qwen + v5f pass^3 exceeds Qwen free pass^3 by at least 25 points",
+  "H4: LLM calls per conversation: Qwen + v5f < 2.5; Opus + v5f < 1.0"
+ ],
+ "forecasts": {
+  "Qwen free pass^1": "55-70% (the Opus customer lifted Qwen alone to 70% on draw-2 tasks)",
+  "Qwen + v5f pass^1": "about 95%",
+  "thinking fallback pass^1": "about 96%",
+  "Opus alone pass^1": "about 97%",
+  "Opus + v5f pass^1": "about 98%",
+  "pass^3": "about 5-15 points below pass^1 for the free arms, 0-6 below for v5f arms"
+ },
+ "metrics": "pass^1 = mean success over trials; pass^k = share of tasks solved in all k of 3 trials (k = 1..3, tau2's definition); calls and agent tokens per conversation; customer messages per conversation; zero-call conversations.",
+ "reruns": "episodes ending in an infrastructure error with no outcome are rerun once with the same code; counts reported per arm",
+ "reporting": "every arm is reported whatever the result, in the paper's registration appendix",
+ "written_utc": "2026-10-09T22:58:31.114380+00:00",
+ "hashes": "a31327d91eaa57cae2b0b12289525fbf6dd4970477cd1e56e1eab4fad6b3d7a8  run_holdout_oc.sh\nb8c6611917734bd26098ce6fdbff975d8b279f278d6d62cb06f48ae0b7403c3a  PREREG_template.json\n1622c676e610c8ed6c49387710b2fdff3de958cb0d0dd40494fb30e895643ab4  freeze_holdout_oc.py\na1c06c4fe84dfd1800141c64088b519b7574be0ae3a563a2f0d7c3df56e62086  dtd_telecom_agent.py\na20179a77ab28082036ccc5dbc3e01c9cdfef7ea272c82f889cc273579e83e80  telecom_v5.py\n1ea0252446befff6d6059aa9cfd2248ea46c8fc82e89a90e49d677d8b68a0e60  telecom_tracker.py\n5c1a91bc9e786572f44be776b93e97ef257e37d89d1bb598ebdda11d3061e480  dtd_run.py\n8f6e5032e6719148f6c3450726f9b6469e3a1129e296ecc552919c767ccc9936  order_dp.json\n89cb3186278e69dba6b654454fc3463838882d31041aecd32abb45495368b80b  telecom_splits.json\n95bc00cf387b02951495465edec3522b8df58b1cde2e59883373efeb5b0f4d33  dtd_retail_agent.py\nb793efa2c6a67eb54d91a7585cc130cd43ff30563c29e60c5287a7d8b4cb9fe2  run_v5f_eval.sh\n2026-10-09T22:56:39Z\n",
+ "beacon": {
+  "uri": "https://beacon.nist.gov/beacon/2.0/chain/2/pulse/1976541",
+  "timeStamp": "2026-10-09T22:58:00.000Z",
+  "outputValue": "DCA4419B67B2023CE435A579B7F96458ED85474C31A842F09975523F1F98E7C61348E793E7CE2381EC5981A84D4672F73F21179C4845D6DFB50D75A30BB7AAAB"
+ },
+ "set": {
+  "n": 60,
+  "pool": "441 holdout tasks never used by an earlier evaluation",
+  "rule": "random.Random(int(outputValue[:16],16)).sample(sorted(pool), 60)"
+ }
+}
